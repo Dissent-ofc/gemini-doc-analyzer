@@ -18,7 +18,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://dissent-ofc.github.io/gemini-doc-analyzer/"
+        "https://dissent-ofc.github.io"
     ],
     allow_credentials=True,
     allow_methods=["*"],
