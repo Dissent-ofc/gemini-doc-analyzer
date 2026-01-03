@@ -1,0 +1,31 @@
+@app.websocket("/ws/live")
+async def gemini_live_chat(websocket: WebSocket):
+    await websocket.accept()
+    
+    initial_data = await websocket.receive_text()
+    context_text = json.loads(initial_data).get("context", "")
+
+    config = {"response_modalities": ["AUDIO"]}
+    
+    async with client.aio.live.connect(model=model_name, config=config) as session:
+        
+        await session.send(input=f"Context: {context_text}. You are a helpful assistant. Answer questions based on this context.", end_of_turn=True)
+
+        async def send_to_gemini():
+            """Receive audio from React -> Send to Gemini"""
+            try:
+                while True:
+                    # Receive raw PCM audio bytes from frontend
+                    data = await websocket.receive_bytes()
+                    if data:
+                        await session.send(input={"data": data, "mime_type": "application/pcm"}, end_of_turn=False)
+            except WebSocketDisconnect:
+                print("Client disconnected")
+
+        async def receive_from_gemini():
+            """Receive audio from Gemini -> Send to React"""
+            async for response in session.receive():
+                if response.data:
+                    await websocket.send_bytes(response.data)
+
+        await asyncio.gather(send_to_gemini(), receive_from_gemini())
