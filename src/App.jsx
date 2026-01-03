@@ -52,7 +52,7 @@ function App() {
       <div className="glass-card">
         
         <header className="header">
-          <h1>✨ Gemini Doc Analyzer</h1>
+          <h1>Gemini Doc Analyzer</h1>
           <p>Upload a PDF to unlock AI-powered insights instantly.</p>
         </header>
 
@@ -75,7 +75,7 @@ function App() {
                 Analyzing...
               </div>
             ) : (
-              "🚀 Analyze Document"
+              "Analyze Document"
             )}
           </button>
         </div>
@@ -84,7 +84,7 @@ function App() {
 
         {analysis && (
           <div className="result-section">
-            <h2 className="result-title">📊 Analysis Results</h2>
+            <h2 className="result-title">Analysis Results</h2>
             <div className="markdown-content">
               <ReactMarkdown>{analysis}</ReactMarkdown>
             </div>
