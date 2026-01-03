@@ -1,3 +1,4 @@
+import os
 import uvicorn
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,8 +9,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from google import genai
 from google.genai import types
 
-API_KEY = "my_api_key_here"
-client = genai.Client(api_key=API_KEY)
+api_key_from_render = os.environ.get("API_KEY")
+if not api_key_from_render:
+    print("CRITICAL ERROR: API_KEY not found in environment variables!")
+client = genai.Client(api_key=api_key_from_render)
 
 model_name = "gemini-2.5-flash"
 
