@@ -51,14 +51,14 @@ All results are rendered as Markdown, making them easy to:
 ### Frontend
 - **Framework:** React 18 (via Vite)  
 - **Styling:** Custom CSS (glassmorphism design and animations)  
-- **HTTP Client:** :Axios  
+- **HTTP Client:** : Axios  
 - **Markdown Rendering:** :react-markdown  
 
 ### Backend
-- **Framework:** :FastAPI (Python)
-- **ASGI Server:** :Uvicorn  
-- **AI Model:** :Google gemini-2.5-flash  
-- **SDK:** :google-genai (2026 Standard)
+- **Framework:** FastAPI (Python)
+- **ASGI Server:** Uvicorn  
+- **AI Model:** Google gemini-2.5-flash  
+- **SDK:** google-genai (2026 Standard)
 
 ---
 
